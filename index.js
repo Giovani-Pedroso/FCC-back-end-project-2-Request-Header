@@ -19,6 +19,13 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/api/whoami",(req,res)=>{
+    console.log(req.rawHeaders);
+    const headers = req.rawHeaders;
+    res.json({"ipaddress": req.connection.remoteAddress,
+              "language":headers[7],
+              "software": headers[3]});
+});
 
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
